@@ -1,0 +1,47 @@
+doctrine:
+    dbal:
+        url: '%env(DATABASE_URL)%'
+        charset: utf8mb4
+        default_table_options:
+            charset: utf8
+            collate: utf8_unicode_ci
+    orm:
+        auto_generate_proxy_classes: false
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App
+            Stripe:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Stripe/Entity'
+                prefix: 'App\Stripe\Entity'
+                alias: Stripe
+        dql:
+            datetime_functions:
+                date:           Oro\ORM\Query\AST\Functions\SimpleFunction
+            numeric_functions:
+                round:          Oro\ORM\Query\AST\Functions\Numeric\Round
+                rand:           App\Dql\Rand
+            string_functions:
+                date_format:    Oro\ORM\Query\AST\Functions\String\DateFormat
+        filters:
+            archive_filter:
+                class:          App\Entity\Filter\ArchiveFilter
+                enabled:        true
+            assign_test_filter:
+                class:          App\Entity\Filter\AssignTestFilter
+                enabled:        false
+
+stof_doctrine_extensions:
+    default_locale: en
+    translation_fallback: true
+    orm:
+        default:
+            timestampable: true
+            blameable: true

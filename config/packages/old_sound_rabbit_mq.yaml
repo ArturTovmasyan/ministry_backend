@@ -1,0 +1,23 @@
+old_sound_rabbit_mq:
+    connections:
+        default:
+            url: '%env(CLOUDAMQP_URL)%'
+    producers:
+       upload_file:
+           connection:       default
+           exchange_options: { name: 'upload.file', type: direct }
+       remove_file:
+            connection:       default
+            exchange_options: { name: 'remove.file', type: direct }
+
+    consumers:
+       upload_file:
+           connection:       default
+           exchange_options: { name: 'upload.file', type: direct }
+           queue_options:    { name: 'upload.file' }
+           callback:         tm.consumer.upload_file
+       remove_file:
+           connection:       default
+           exchange_options: { name: 'remove.file', type: direct }
+           queue_options:    { name: 'remove.file' }
+           callback:         tm.consumer.remove_file

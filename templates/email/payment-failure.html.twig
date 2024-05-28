@@ -1,0 +1,21 @@
+{% extends 'email/user.edited.email.html.twig' %}
+
+{% block emailContent %}
+  <pre style="color: #333; font-size: 16px">
+
+  <span style="color: #3D49B7; font-size:18px">Dear {{ data.fullName }},</span>
+
+  <b>{{ data.invoice_sum }}</b> payment to was unsuccessful.
+
+  We were unable to charge your <b>{{ data.card_brand }}</b> ending in <b>{{ data.card_end }}</b>
+  for your subscription.
+
+  Please update your billing information.
+
+  Sincerely,
+  Testing Ministry Team
+
+  <a href="mailto:contact_support@testingministry.com" target="_blank">contact_support@testingministry.com</a>
+
+</pre>
+{% endblock %}

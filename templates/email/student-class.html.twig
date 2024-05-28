@@ -1,0 +1,23 @@
+{% extends 'email/user.edited.email.html.twig' %}
+
+{% block emailContent %}
+<pre style="color: #333; font-size: 16px">
+
+   Hi, <strong>{{ data.sender }}</strong> Invited you to join class {{ data.class }}
+
+{% if data.password is not null %}
+   Your temporary password is` <strong>Password is pass</strong>
+{% endif %}
+
+   Click on the <a href="{{ data.url }}">LINK</a> to confirm you want to be part of this class
+
+   After confirming, you can receive assignments from your
+   instructor as well as  collaborate and compete with
+   you classmates.
+
+
+   Regards,
+   Testing Ministry Team
+
+</pre>
+{% endblock %}

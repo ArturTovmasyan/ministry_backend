@@ -1,0 +1,17 @@
+{% extends 'email/user.edited.email.html.twig' %}
+
+{% block emailContent %}
+    <pre style="color: #333; font-size: 16px">
+
+    You have a new assignment from your instructor.
+
+    <strong>Deadline:</strong> {{ data.testData['deadline']|date('Y-m-d') }}
+
+    <strong>Expectation:</strong> {{ data.testData['expectation']~'%' }} or higher
+
+    <strong>Time Limit:</strong> {{ data.testData['timeLimit'] }} minutes
+
+ Good luck,
+ Testing Ministry Team
+</pre>
+{% endblock %}

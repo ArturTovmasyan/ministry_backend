@@ -1,0 +1,22 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+    providers:
+        a0_user_provider:
+            id:
+                a0_user_provider
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        secured_area:
+            pattern: ^/api
+            stateless: true
+            simple_preauth:
+               authenticator: jwt_auth.jwt_authenticator
+            provider: a0_user_provider
+
+    access_control:
+        - { path: ^/api/private, roles: ROLE_OAUTH_AUTHENTICATED }
+        - { path: ^/api/public, roles: IS_AUTHENTICATED_ANONYMOUSLY }

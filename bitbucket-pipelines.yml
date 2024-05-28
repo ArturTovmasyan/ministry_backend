@@ -1,0 +1,47 @@
+image: php:7.4.14
+
+pipelines:
+  custom: # Pipelines that can only be triggered manually
+    default:
+      - step:
+          name: Deploy to dev
+          caches:
+            - composer
+          deployment: test
+          script:
+            - echo "deb http://deb.debian.org/debian jessie main\ndeb http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+            - apt-get update && apt-get install -y unzip git
+            - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_DEV.git HEAD:master -f
+  branches:
+    develop:
+      - step:
+          name: Deploy to dev
+          caches:
+            - composer
+          deployment: test
+          script:
+            - echo "deb http://deb.debian.org/debian jessie main\ndeb http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+            - apt-get update && apt-get install -y unzip git
+            - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_DEV.git HEAD:master -f
+    release/*:
+       - step:
+          name: Deploy to Staging
+          caches:
+            - composer
+          deployment: staging
+          script:
+            - echo "deb http://deb.debian.org/debian jessie main\ndeb http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+            - apt-get update && apt-get install -y unzip git
+            - git filter-branch -- --all
+            - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_STAGING.git HEAD:master -f
+    master:
+      - step:
+          name: Deploy to Production
+          caches:
+            - composer
+          deployment: production
+          script:
+            - echo "deb http://deb.debian.org/debian jessie main\ndeb http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+            - apt-get update && apt-get install -y unzip git
+            - git filter-branch -- --all
+            - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_PRODUCTION.git HEAD:master -f

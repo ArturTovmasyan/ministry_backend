@@ -1,0 +1,38 @@
+{% extends 'email/user.edited.email.html.twig' %}
+
+{% block emailContent %}
+<pre style="color: #333; font-size: 16px">
+
+  <span style="color: #3D49B7; font-size:18px">Hi {{ data.student }},</span>
+
+  Well done - you WON the challenge! Your scoreboard will be
+  updated with additional point.
+
+
+                   <a href="{{ data.scoreBoardUrl }}" target="_blank" class="myButton"
+                      style="margin-left: 34%;
+                             margin-top: 3%;
+                             color: #fff;
+                             text-decoration: none;
+                             background-color: #3D49B7;
+                             border-radius: 10px;
+                             width: 140px;">See my scoreboard</a>
+
+
+
+  Challenge Rules:
+
+    &bull; Score above 75% and get 1 point.
+    &bull; Score higher than opponent and get 3 points.
+    &bull; In case of draw, both participants will score 2 points each.
+
+
+  Good luck !
+
+  Testing Ministry Team
+
+  <a href="mailto:contact_support@testingministry.com" target="_blank">contact_support@testingministry.com</a>
+
+</pre>
+{% endblock %}
+

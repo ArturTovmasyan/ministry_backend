@@ -1,0 +1,76 @@
+{% block body_text %}
+    {% autoescape false %}
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Ministry</title>
+            <style type="text/css">
+                body {
+                    margin: 0;
+                }
+
+                .myButton {
+                    float: left;
+                    background-color: #00a65a;
+                    border-radius: 5px;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                    border: 1px solid transparent;
+                    -moz-box-shadow: none;
+                    padding: 6px 12px;
+                    margin-bottom: 0;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 1.42857143;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    -ms-touch-action: manipulation;
+                    touch-action: manipulation;
+                    cursor: pointer;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    background-image: none;
+                    display: flex;
+                }
+
+                .myButton:hover {
+                    background-color: #03721B;
+                    cursor: pointer;
+
+                }
+
+                .myButton:active {
+                    position: relative;
+                    top: 1px;
+                }
+
+                .container {
+                    padding-right: 15px;
+                    padding-left: 15px;
+                    margin-right: auto;
+                    margin-left: auto;
+                    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+                }
+
+                .row {
+                    margin-right: -15px;
+                    margin-left: -15px;
+                }
+            </style>
+        </head>
+
+        <body>
+        <div class="container">
+            {% block image %}{% endblock %}
+            {% block content %}{% endblock %}
+        </div>
+        </body>
+        </html>
+    {% endautoescape %}
+{% endblock %}
+
+
+

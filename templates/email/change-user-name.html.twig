@@ -1,0 +1,17 @@
+{% extends 'email/user.edited.email.html.twig' %}
+
+{% block emailContent %}
+<pre style="color: #333; font-size: 16px">
+
+  <span style="color: #3D49B7; font-size:18px">Dear {{ data.userData['newFullName'] }},</span>
+
+  You recently changed your name/surname from "{{ data.userData['oldFullName'] }}"
+  to "{{ data.userData['newFullName'] }}"
+
+  If it is not you - please <a href="mailto:contact_support@testingministry.com">Contact Us</a> immediately.
+
+  Regards,
+  Testing Ministry Team
+
+</pre>
+{% endblock %}

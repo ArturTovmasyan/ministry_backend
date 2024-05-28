@@ -1,0 +1,42 @@
+{% extends 'email/user.edited.email.html.twig' %}
+
+{% block emailContent %}
+<pre style="color: #333; font-size: 16px">
+
+  <span style="color: #3D49B7; font-size:18px">Hi {{ data.competitor }},</span>
+
+
+  You have been challenged by {{ data.sender }} to take the
+  <strong>{{ data.test }}.</strong>
+
+  Please click on "Start" button below to start your test.
+
+                 <a href="{{ data.confirmChallengeUrl }}" target="_blank" class="myButton"
+                    style="margin-left: 40%;
+                         margin-top: 3%;
+                         color: #fff;
+                         text-decoration: none;
+                         background-color: #3D49B7;
+                         border-radius: 10px;
+                         width: 40px;">Start</a>
+
+
+
+
+  You have <strong>24 hours</strong> to take this test.
+
+  Challenge Rules:
+
+  &bull; Score above 75% and get 1 point.
+  &bull; Score higher than opponent and get 3 points.
+  &bull; In case of draw, both participants will score 2 points each.
+
+
+  Good luck !
+
+  Testing Ministry Team
+
+  <a href="mailto:contact_support@testingministry.com" target="_blank">contact_support@testingministry.com</a>
+
+</pre>
+{% endblock %}

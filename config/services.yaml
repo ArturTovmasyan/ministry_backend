@@ -1,0 +1,38 @@
+parameters:
+    locale: 'en'
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\EventListener\ExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
+    App\EventListener\RequestListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
+
+    App\EventListener\DoctrineListener:
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    a0_user_provider:
+        class: App\Security\Provider\A0UserProvider
+        arguments: ["@jwt_auth.auth0_service"]
+
+    tm.consumer.upload_file:
+        class: App\Consumer\UploadFileConsumer
+
+    tm.consumer.remove_file:
+        class: App\Consumer\RemoveFileConsumer
